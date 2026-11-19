@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#111111">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101827">
@@ -149,6 +151,13 @@ function openPlayer(src,title,note){
 function closePlayer(){modal.classList.remove('open');$('#videoFrame').innerHTML='';document.body.style.overflow='';}
 $('#closePlayer').addEventListener('click',closePlayer);modal.addEventListener('click',e=>{if(e.target===modal)closePlayer();});document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlayer();});
 $('#saveKey').addEventListener('click',()=>{ytKey=$('#ytKey').value.trim();if(ytKey)localStorage.setItem('vidosearch_yt_key',ytKey);else localStorage.removeItem('vidosearch_yt_key');setStatus(ytKey?'YouTube API key saved in this browser. Search YouTube to test it.':'YouTube API key cleared.');});
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js");
+  });
+}
 </script>
 </body>
 </html>
